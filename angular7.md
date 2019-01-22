@@ -1,12 +1,12 @@
-title: angular7 讲解
+title: Angular7 介绍
 transition: rollIn
 
 [slide]
-# angular7 讲解
-## CKP3-陈宇
+# Angular7 介绍
+## 陈宇
 
 [slide]
-# 讲解纲要
+# 介绍纲要
 - 与AngularJS的架构区别
 - TypeScript简介
 - Angular开发环境
@@ -16,6 +16,21 @@ transition: rollIn
 AngularJS 是一个典型的 MVC 架构 （Model - View - Controller)
 
 ![AngularJS](/images/framework2.png)
+
+- M - Model  数据：数据实体,用来保存页面要展示的数据
+
+- V - View      视图：负责显示数据的,一般其实就是指的html页面
+
+- C - Controller 控制器： 控制整个业务逻辑,负责处理数据,比如数据的获取,以及数据的过滤，进而影响数据在视图上的展示
+
+[slide]
+- AngularJS是早期比较完善的前端框架，包含了模板，数据双向绑定，路由，模块化，服务，过滤器，依赖注入等功能，虽然在开发响应式页面双向绑定的web应用上比较成熟，但同时也有它的缺点。
+
+  - 它采用的脏数据检查的方式，会跟踪数据的改变，动态改变用户页面的数据。随着绑定数量的增加，检查的效率就不断降低，页面加载速度也会变慢
+
+  - 落后于当前web发展理念(如组件式、工程化的开发)
+
+  - 对手机端的支持不是太友好
 [slide]
 而 Angular 则是基于组件(Component)的架构
 ![Angular](/images/framework1.jpeg)
@@ -24,7 +39,16 @@ AngularJS 是一个典型的 MVC 架构 （Model - View - Controller)
 
   ![浏览器支持情况](/images/brower-support.jpeg)
 
-不像angular1支持IE8，新版本的angular放弃了它
+不像AngularJS支持IE8，新版本的Angular放弃了它
+[slide]
+
+- 两者的对比分析
+  - Angular不是从AngularJS升级过来的，Angular是用Typescript重写的，所以从设定之初就是不一样的；
+  - AngularJS诞生在09年，在设计之初主要是针对pc端的，对移动端支持较少，而Angular是设计包含移动端的；
+  - AngularJS的核心概念是$scope，但是Angular中没有$scope；
+  - AngularJS中的controller也在Angular中不再使用，被Component组件所替代。
+
+* 相比AngularJS，移除了 controller +$scope 作用域的设计，改用组件式开发，使得其更容易被理解和上手性能更好（渲染更快，变化检测效率更高）优先为移动应用设计 更加贴合未来的标准（如es6/7、WebComponent）
 
 [slide]
 - TypeScript简介
@@ -34,7 +58,7 @@ AngularJS 是一个典型的 MVC 架构 （Model - View - Controller)
   简单说来es6是typescript的超集，在支持ES6的基础之上加入了一些新的特性。
 
 [slide]
-- 在angular中使用ts
+- 在Angular中使用ts
   ```Typescript
     @Component({
       selector: 'app-user-item',
@@ -42,17 +66,17 @@ AngularJS 是一个典型的 MVC 架构 （Model - View - Controller)
       styleUrls: ['./user-item.component.css']
     })
     export class UserItemComponent {
-      // 声明变量数据类型
-      // 基本类型
+      // 在变量名后用冒号:T(T 代表TS的类型)声明变量的类型。基本类型
       name: string = 'zhang san';
       age: number = 666;
       isMale: boolean = true;
-      // 不做限制
-      something: any = 'as string';
-      something = 1;
+      // 不做限制 any表示任意类型
+      something: any = 'as string'
       // 引用类型
       names: Array<string> = ['react', 'vue', 'angular', 'flutter', 'pwa']; // 在声明数据类型的同时可以声明内容的数据类型
-      names: string[] = ['react', 'vue', 'angular', 'flutter', 'pwa'];// 简写
+      names: string[] = ['react', 'vue', 'angular', 'flutter', 'pwa'];// 另一种写法
+      // 元祖类型
+      x: [string, number] = ["hello", 123]; 
       constructor() {//和ES6类的写法很像
         this.names=['react', 'vue', 'angular', 'flutter', 'pwa'];
       }
@@ -60,8 +84,8 @@ AngularJS 是一个典型的 MVC 架构 （Model - View - Controller)
       function greet():string {
          return this.name;
       }
-      // 不期望返回值 isMale?: boolean声明为可传参数
-      function setName(name: string, isMale?: boolean): void {
+      // 不期望返回值 isMale ?: boolean声明为可传参数
+      function setName(name: string, isMale ?: boolean, no=1): void {
         this.name = name;
       }
     }
@@ -69,7 +93,7 @@ AngularJS 是一个典型的 MVC 架构 （Model - View - Controller)
 
 [slide]
 - 开发环境简介
-- 工具安装 angular-cli
+- 命令行工具安装 angular-cli
   - ```
       npm i -g @angular/cli
     ```
@@ -83,9 +107,9 @@ AngularJS 是一个典型的 MVC 架构 （Model - View - Controller)
     
     - node-sass安装不上可切换淘宝镜像库或者用cnpm安装
 
-    - npm config set registry https://registry.npm.taobao.org 再 npm install
+      - npm config set registry https://registry.npm.taobao.org 再 npm install
 
-    - npm install -g cnpm cnpm install 
+      - npm install -g cnpm 再 cnpm install 
 
 [slide]
 
@@ -121,7 +145,7 @@ AngularJS 是一个典型的 MVC 架构 （Model - View - Controller)
     ```
 
 [slide]
-- 语法讲解
+- 语法介绍
 
 - 插值表达式{{}}
 
@@ -129,7 +153,7 @@ AngularJS 是一个典型的 MVC 架构 （Model - View - Controller)
   ```javascript
   <p>标题是{{title}}</p>
   ```
-  插值运算 加减乘除/字符串拼接/三元/函数调用
+  插值表达式支持 加减乘除运算/字符串拼接/三元/函数调用
   ```
   <div>{{5+3}},{{5-3}},{{5*3}},{{5/3}},{{ "a" + "b" }},{{true ? 1 : 0}}</div>
   ```
@@ -168,7 +192,7 @@ AngularJS 是一个典型的 MVC 架构 （Model - View - Controller)
   }
   ```
 
-  - 新版写法
+  - 新版写法 controller被砍掉了，整个都放在了component之中，在利用注解的时候就已经指明了模块暴露的class是什么类型的angular类了
 
   ```TypeScript
     @Component({
@@ -215,11 +239,14 @@ AngularJS 是一个典型的 MVC 架构 （Model - View - Controller)
   <h3 [hidden]="!isShow">
     Your favorite hero is: {{favoriteHero}}
   </h3>
+
+  <p ng-bind-html="myText"></p>
+  <p [innerHTML]="myText"></p>
   ```
 
 [slide]
 
-``` html
+```html
 
 <ul>
   <li ng-for="name in names">{{ name }}</li>
@@ -243,10 +270,6 @@ AngularJS 是一个典型的 MVC 架构 （Model - View - Controller)
 <div [ngStyle]="{color: colorPreference}">
 <!--单个style绑定-->
 <div [style.color]="colorPreference">
-
-<!--过滤器-->
-<p>{{title | uppercase}}</p>
-<p>{{currentTime | date: "yyyy-MM-dd HH:mm:ss" }}</p>
 ```
 
 [slide]
@@ -267,7 +290,7 @@ AngularJS 是一个典型的 MVC 架构 （Model - View - Controller)
 - 使用service
   ```TypeScript
   import { TestService } from '../service/test.service';
-  export class BrotherComponent implements OnInit {
+  export class BrotherComponent {
 
     constructor(private testService: TestService) { }
 
@@ -278,35 +301,7 @@ AngularJS 是一个典型的 MVC 架构 （Model - View - Controller)
   ```
 
 [slide]
-- 服务总线 组件间分享数据
-  1. 注册服务
-  ```javascript
-  ng g s ./services/eventBus
-  import { Injectable } from "@angular/core";
-  import { Observable, Subject } from "rxjs";
-  @Injectable({
-    providedIn: "root"
-  })
-  export class EventBusService {
-    public eventBus: Subject<string> = new Subject();
-    constructor() {}
-  }
-  ```
-
-  2. 组件内发射数据
-  ```javascript
-  this.eventBusService.eventBus.next("child组件发送的数据");
-  ```
-
-  3. 组件接收数据
-  ```javascript
-  this.eventBusService.eventBus.subscribe(arg => {
-      console.log(`接收到事件${arg}`);
-  });
-  ```
-
-[slide]
-- module注册入口
+- module注册入口 app.module.ts
 
   ``` TypeScript
   import { BrowserModule } from '@angular/platform-browser';
@@ -358,6 +353,34 @@ this.follow.emit("子组件传来的数据");
   <button (click)="child.sayHello()">子组件说话</button>
   ```
 [slide]
+- 服务总线 组件间分享数据
+  1. 注册服务
+  ```javascript
+  ng g s ./services/eventBus
+  import { Injectable } from "@angular/core";
+  import { Observable, Subject } from "rxjs";
+  @Injectable({
+    providedIn: "root"
+  })
+  export class EventBusService {
+    public eventBus: Subject<string> = new Subject();
+    constructor() {}
+  }
+  ```
+
+  2. 组件内发射数据
+  ```javascript
+  this.eventBusService.eventBus.next("child组件发送的数据");
+  ```
+
+  3. 组件接收数据
+  ```javascript
+  this.eventBusService.eventBus.subscribe(arg => {
+      console.log(`接收到事件${arg}`);
+  });
+  ```
+
+[slide]
 - 内容投影
 
   ng-content标签将父组件模版上的任意片段投影到子组件上。
@@ -380,16 +403,16 @@ this.follow.emit("子组件传来的数据");
 
   3. 属性绑定插入html片段
 
-    ```
-    <div [innerHTML]="divContent"></div>
+  ```
+  <div [innerHTML]="divContent"></div>
 
-    public divContent:string = "<div>属性绑定绑innerHTML</div>";
-    ```
+  public divContent:string = "<div>属性绑定绑innerHTML</div>";
+  ```
 
 [slide]
 - 路由导航
 
-  ```Typescript
+  ```typescript
   import { NgModule } from '@angular/core';
   import { Routes, RouterModule } from '@angular/router';
   import { ChildComponent } from "./child/child.component";
@@ -454,15 +477,15 @@ this.follow.emit("子组件传来的数据");
   ```
 
 [slide]
-- 生命周期
+- 生命周期钩子
   - ngOnChanges	当被绑定的输入属性的值发生变化时调用，首次调用一定会发生在 ngOnInit之前。
-  - ngOnInit	在第一轮 ngOnChanges 完成之后调用。 ( 译注：也就是说当每个输入属性的值都被触发了一次 ngOnChanges 之后才会调用 ngOnInit ，此时所有输入属性都已经有了正确的初始绑定值 )	
+  - ngOnInit	发生于构造函数之后，用于初始化指令/组件，主要用于数据绑定的输入属性处理。
   - ngDoCheck	在每个 Angular 变更检测周期中调用。
   - ngAfterContentInit	当把内容投影进组件之后调用。
   - ngAfterContentChecked	每次完成被投影组件内容的变更检测之后调用。
   - ngAfterViewInit	初始化完组件视图及其子视图之后调用。
   - ngAfterViewChecked	每次做完组件视图和子视图的变更检测之后调用。
-  - ngOnDestroy	当 Angular 每次销毁指令 / 组件之前调用。
+  - ngOnDestroy	当 Angular 每次销毁指令 / 组件之前调用，取消订阅监控对象和事件处理函数，以避免内存泄漏，仅会被调用一次。
 
   一般在ngOnInit()函数中获取初始数据是比较好的。
 
