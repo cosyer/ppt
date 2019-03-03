@@ -7,7 +7,6 @@ transition: rollIn
 ![Store](/images/store.png)
 
 [slide]
-
 ```javascript
 const a = [0,1,2,3]
 a[0] = 10086
@@ -26,7 +25,6 @@ const b = 1; // error
 ```
 
 [slide]
-
 ## for...in遍历对象属性
 ```javascript
 var a = {1:1,name:'cosyer',2:2}
@@ -193,6 +191,7 @@ function getMonthCountDay (year, month) {
   return new Date(year, month , 0).getDate();
 }
 ```
+
 [slide]
 ## JSON.parse和JSON.stringify其他参数
 ```javascript
@@ -220,8 +219,8 @@ JSON.stringify(testJSON, ['name']);
 
 // "{"name": 'test'}"
 ```
-[slide]
 
+[slide]
 ```javascript
 JSON.stringify(testJSON, ['name', 'cities']);
  
