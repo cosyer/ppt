@@ -965,3 +965,4 @@ ReactDOM.render( <MessageBox/>,
 - [React.js 小书](http://huziketang.mangojuice.top/books/react/lesson1)
 - [es6-react-redux-share](https://github.com/judithhuang/es6-react-redux-share)
 - [ruanyifeng](http://www.ruanyifeng.com/blog/2015/03/react.html)
+- [React进阶之路](https://blog.michealwayne.cn/2020/02/03/react/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8AReact%E8%BF%9B%E9%98%B6%E4%B9%8B%E8%B7%AF%E3%80%8B/)
